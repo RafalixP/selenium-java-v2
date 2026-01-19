@@ -3,9 +3,6 @@ package com.rafal.selenium;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.By;              // do znajdowania elementów
-import org.openqa.selenium.chrome.ChromeOptions;    // do opcji Chrome: wyłączenie powiadomień związanych z hasłem
-import org.openqa.selenium.JavascriptExecutor;      // do JavaScript click
-import org.openqa.selenium.WebElement;              // do WebElement
 import org.testng.annotations.Test;         // do @Test
 import org.testng.annotations.BeforeMethod; // do @BeforeMethod
 import org.testng.annotations.AfterMethod;  // do @AfterMethod
