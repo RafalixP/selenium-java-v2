@@ -13,7 +13,7 @@
         <!-- Selenium dependency -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java-v2</artifactId>
+            <artifactId>selenium-java</artifactId>
             <version>4.12.1</version>
         </dependency>
         
@@ -36,11 +36,7 @@
             <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-surefire-plugin</artifactId>
     <version>3.0.0-M9</version>
-    <configuration>
-        <suiteXmlFiles>
-            <suiteXmlFile>testng.xml</suiteXmlFile>
-        </suiteXmlFiles>
-    </configuration>
+
         </plugin>
     </plugins>
 </build>
