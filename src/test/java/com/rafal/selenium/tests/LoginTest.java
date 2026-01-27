@@ -2,6 +2,7 @@ package com.rafal.selenium.tests;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.rafal.selenium.pages.LoginPage;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,16 +16,18 @@ public class LoginTest extends BaseTest {
     private String username = "tomsmith";
     private String password = "SuperSecretPassword!";
     private String invalidPassword = "XXXXXXXX";
+    private LoginPage page;
 
+    @BeforeMethod
+    public void setUpLogin() {
+        page = new LoginPage(driver); //tworzymy nowy obiekt - instancję klasy CheckboxesPage
+    }
 
     @Test
     public void testLogin() {
         //case 1 - scenariusz pozytywny
         //wchodzimy na podstronę Login
         driver.findElement(By.linkText("Form Authentication")).click();
-
-        //tworzymy nowy obiekt - instancję klasy CheckboxesPage
-        LoginPage page = new LoginPage(driver);
 
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         page.enterUsername(username);
@@ -40,7 +43,5 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(currentUrl.contains("secure"));
 
     }
-
-    //@Test
-    //case 2 - scenariusz pozytywny
+    
 }
