@@ -29,7 +29,6 @@ public class LoginTest extends BaseTest {
     public void testLogin() {
         //case 1 - scenariusz pozytywny
         
-
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         page.enterUsername(username);
         page.enterPassword(password);
@@ -45,6 +44,26 @@ public class LoginTest extends BaseTest {
 
     }
 
+    @Test
+    public void testLoginInvalidPassword() {
+        //case 2 - scenariusz negatywny, nieprawidłowe hasło
+        //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
+        page.enterUsername(username);
+        page.enterPassword(invalidPassword);
+        page.clickLogin();
+
+        //poczekajmy chwilę na zmianę strony (wait odziedziczony z BaseTest)
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
+
+        //czy logowanie się udało?
+        Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
+
+        //a wyświetl no adres strony
+        String currentUrl = driver.getCurrentUrl();
+        System.out.println("Current URL is: " + currentUrl);
+
+
+    }
     
     
 }
