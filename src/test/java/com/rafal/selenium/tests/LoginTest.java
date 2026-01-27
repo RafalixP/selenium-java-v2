@@ -21,13 +21,14 @@ public class LoginTest extends BaseTest {
     @BeforeMethod
     public void setUpLogin() {
         page = new LoginPage(driver); //tworzymy nowy obiekt - instancję klasy CheckboxesPage
+        //wchodzimy na podstronę Login
+        driver.findElement(By.linkText("Form Authentication")).click();
     }
 
     @Test
     public void testLogin() {
         //case 1 - scenariusz pozytywny
-        //wchodzimy na podstronę Login
-        driver.findElement(By.linkText("Form Authentication")).click();
+        
 
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         page.enterUsername(username);
@@ -43,5 +44,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(currentUrl.contains("secure"));
 
     }
+
+    
     
 }
