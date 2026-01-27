@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.time.Duration;
 
 
-public class loginSimpleTest {
+public class loginSimpleOld {
     //deklaracja zmiennych
     private WebDriver driver;
     private WebDriverWait wait;

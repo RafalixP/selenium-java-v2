@@ -13,7 +13,7 @@ import java.time.Duration;
 import java.util.List;
 import org.openqa.selenium.WebElement;
 
-public class checkboxesSimpleTest {
+public class checkboxesSimpleOld {
     //deklaracja zmiennych
     private WebDriver driver;
     private WebDriverWait wait;
@@ -34,7 +34,7 @@ public class checkboxesSimpleTest {
         checkboxes = driver.findElements(By.cssSelector("input[type='checkbox']"));
     }
 
-    @Test
+    @Test(enabled = false)
     public void isBoxChecked() {
         //case 1
         
@@ -49,7 +49,7 @@ public class checkboxesSimpleTest {
         Assert.assertTrue(checkboxes.get(0).isSelected());
     }
 
-    @Test
+    @Test(enabled = false)
     public void clickingBetweenBoxes() {
         //case 2 - sprawdzenie czy jak zaznaczę boxa #1 i potem ODzaznaczę #2 to czy #1 nadal jest zaznaczony
 
