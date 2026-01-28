@@ -19,6 +19,8 @@ public class ScreenshotListener implements ITestListener {
 
     //metoda wykonywana jeśli TestNG stwierdzi iż test się wysypał
     public void onTestFailure(ITestResult result) {
+        System.out.println("Test FAILED: " + result.getName());
+        
         Object testClass = result.getInstance();    //działamy na instancji testu (tego który się wysypał)
 
         try {

@@ -9,8 +9,12 @@ import org.testng.annotations.BeforeMethod; // do @BeforeMethod
 import com.rafal.selenium.pages.LoginPage;
 
 import org.testng.annotations.AfterMethod;  // do @AfterMethod
+import org.testng.annotations.Listeners;    //do obsługi screenów
 import org.openqa.selenium.By;              // do znajdowania elementów
+import com.rafal.selenium.listeners.ScreenshotListener;    //do obsługi screenów
 
+
+@Listeners(ScreenshotListener.class)  //dodajemy listenera do obsługi screenów
 public class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait wait;
