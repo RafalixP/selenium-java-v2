@@ -23,3 +23,6 @@ Thumbs.db
 
 # Demo file (niepotrzebny)
 src/main/java/com/rafal/selenium/HelloSelenium.java
+
+# Screeny
+screenshots/
