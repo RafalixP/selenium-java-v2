@@ -27,4 +27,9 @@ public class BaseTest {
         Thread.sleep(5000); // 5 sekund żeby zobaczyć rezultat
         driver.quit();
     }
+
+    // dodaję aby można było dostać się do drivera z klas testujących + screeny
+    public WebDriver getDriver() {
+        return driver;
+    }
 }
