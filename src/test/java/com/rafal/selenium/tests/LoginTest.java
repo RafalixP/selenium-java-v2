@@ -16,11 +16,12 @@ public class LoginTest extends BaseTest {
     private String username = "tomsmith";
     private String password = "SuperSecretPassword!";
     private String invalidPassword = "XXXXXXXX";
+
     private LoginPage page;
 
     @BeforeMethod
     public void setUpLogin() {
-        page = new LoginPage(driver); //tworzymy nowy obiekt - instancję klasy CheckboxesPage
+        page = new LoginPage(driver); //tworzymy nowy obiekt - instancję klasy LoginPage
         //wchodzimy na podstronę Login
         driver.findElement(By.linkText("Form Authentication")).click();
     }
