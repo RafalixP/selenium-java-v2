@@ -23,8 +23,8 @@ public class DropdownPage extends BasePage {
     //metoda zwracająca tekst z wybranej opcji
     public String getSelectedOptionText() {
         WebElement dropdownElement = driver.findElement(dropdownLocator); // tworzymy element dropdownElement i przypisujemy mu to co znajdziemy po dropdownLocator
-        Select select = new Select(dropdownElement);
-        return select.getFirstSelectedOption().getText();
+        Select select = new Select(dropdownElement);                  //nowy obiekt select
+        return select.getFirstSelectedOption().getText();            //na obiekcie select stosujemy metodę z klasy Select (getFirstSelectedOption) i następnie wyciągamy z tego tekst
     }
 
 }
