@@ -31,9 +31,9 @@ public class DropdownTest extends BaseTest {
         // case - Kliknięcie opcji 1 → opcja ma selected
         page.selectByVisibleText("Option 1");
 
-        //Assert.assertTrue(driver.findElement(By.id("dropdown")).isDisplayed()); // to jest tu niepotrzebne
-        //Assert.assertTrue()
+        //Assert.assertTrue(driver.findElement(By.id("dropdown")).isDisplayed()); // to jest tu niepotrzebne, bo nas interesuje wybrana opcja, a nie czy box się wyświetlił
         Assert.assertEquals(page.getSelectedOptionText(), "Option 1");
+
     }
 
         // case - Kliknięcie opcji 2 → opcja ma selected
