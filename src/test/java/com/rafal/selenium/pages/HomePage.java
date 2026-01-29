@@ -24,9 +24,9 @@ public class HomePage extends BasePage {
         return new LoginPage(driver);
     }
 
-    public CheckboxPage goToCheckboxPage() {
-        driver.findElement(checkboxLink).click();
-        return new CheckboxPage(driver);
+    public CheckboxesPage goToCheckboxesPage() {
+        driver.findElement(checkboxesLink).click();
+        return new CheckboxesPage(driver);
     }
     
 }
