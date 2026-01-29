@@ -26,5 +26,9 @@ public class DropdownPage extends BasePage {
         Select select = new Select(dropdownElement);                  //nowy obiekt select
         return select.getFirstSelectedOption().getText();            //na obiekcie select stosujemy metodę z klasy Select (getFirstSelectedOption) i następnie wyciągamy z tego tekst
     }
+    // metoda do refreshu strony
+    public void reloadPage() {
+        driver.navigate().refresh();
+    }
 
 }
