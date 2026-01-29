@@ -19,16 +19,21 @@ public class DropdownTest extends BaseTest {
         driver.findElement(By.linkText("Dropdown")).click(); //znajdujemy link do podstrony i klikamy go
     }
 
+    // case - Po załadowaniu strony żadna opcja nie jest wybrana
+    @Test
+    public void defaultState() {
+        Assert.assertEquals(page.getSelectedOptionText(), "Please select an option");
+    }
+        
 
-        // case - Po załadowaniu strony żadna opcja nie jest wybrana
+    // case - Odświeżenie strony nie zmienia stanu (nic nie jest wybrane)
 
-        // case - Odświeżenie strony nie zmienia stanu (nic nie jest wybrane)
+    // case - Pole dropdowna nie jest edytowalne ręcznie
 
-        // case - Pole dropdowna nie jest edytowalne ręcznie
-
+    // case - Kliknięcie opcji 1 → opcja ma selected
     @Test
     public void selectDropdown() {
-        // case - Kliknięcie opcji 1 → opcja ma selected
+        
         page.selectByVisibleText("Option 1");
 
         //Assert.assertTrue(driver.findElement(By.id("dropdown")).isDisplayed()); // to jest tu niepotrzebne, bo nas interesuje wybrana opcja, a nie czy box się wyświetlił
@@ -36,12 +41,12 @@ public class DropdownTest extends BaseTest {
 
     }
 
-        // case - Kliknięcie opcji 2 → opcja ma selected
+    // case - Kliknięcie opcji 2 → opcja ma selected
 
-        // case - kolejność opcji: czy 1 jest faktycznie pierwsza
+    // case - kolejność opcji: czy 1 jest faktycznie pierwsza
 
-        // case - wybieram 1, potem 2, sprawdzam czy opcja 1 przestaje być selected, a wybrana jest opcja 2
+    // case - wybieram 1, potem 2, sprawdzam czy opcja 1 przestaje być selected, a wybrana jest opcja 2
 
-        // case - walidacja danych - czy można wpisać tekst
+    // case - walidacja danych - czy można wpisać tekst
 
 }
