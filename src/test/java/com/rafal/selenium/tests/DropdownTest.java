@@ -27,6 +27,7 @@ public class DropdownTest extends BaseTest {
         Assert.assertEquals(dropdownPage.getSelectedOptionText(), "Please select an option", "Domyślnie dropdown powinien pokazywać placeholder 'Please select an option'"); // komunikat na wypadek gdyby nie było równości
     }
         
+    
     // case 2 - Kliknięcie opcji 1 → opcja ma selected
     @Test
     public void selectOption1_shouldMarkItAsSelected() {
@@ -38,7 +39,17 @@ public class DropdownTest extends BaseTest {
 
     }
 
+
     // case 3 - Odświeżenie strony nie zmienia stanu (nic nie jest wybrane)
+    @Test
+    public void reloadShouldKeepThePlaceholder() {
+        //sprawdzamy czy po otwarciu strony widoczny jest placeholder
+        Assert.assertEquals(dropdownPage.getSelectedOptionText(), "Please select an option", "Domyślnie dropdown powinien pokazywać placeholder 'Please select an option'");
+        //reload strony
+        dropdownPage.reloadPage();
+        //ponownie sprawdzamy czy jest widoczny placeholder
+        Assert.assertEquals(dropdownPage.getSelectedOptionText(), "Please select an option", "Domyślnie dropdown powinien pokazywać placeholder 'Please select an option'");
+    }
 
     // case 4 - Pole dropdowna nie jest edytowalne ręcznie
 
