@@ -27,7 +27,7 @@ public class DropdownTest extends BaseTest {
         
     // case 2 - Kliknięcie opcji 1 → opcja ma selected
     @Test
-    public void selectDropdown() {
+    public void selectOption1_shouldMarkItAsSelected() {
         
         page.selectByVisibleText("Option 1");
 
@@ -36,18 +36,18 @@ public class DropdownTest extends BaseTest {
 
     }
 
-    // case - Odświeżenie strony nie zmienia stanu (nic nie jest wybrane)
+    // case 3 - Odświeżenie strony nie zmienia stanu (nic nie jest wybrane)
 
-    // case - Pole dropdowna nie jest edytowalne ręcznie
+    // case 4 - Pole dropdowna nie jest edytowalne ręcznie
 
     
 
-    // case - Kliknięcie opcji 2 → opcja ma selected
+    // case 5 - Kliknięcie opcji 2 → opcja ma selected
 
-    // case - kolejność opcji: czy 1 jest faktycznie pierwsza
+    // case 6 - kolejność opcji: czy 1 jest faktycznie pierwsza
 
-    // case - wybieram 1, potem 2, sprawdzam czy opcja 1 przestaje być selected, a wybrana jest opcja 2
+    // case 7 - wybieram 1, potem 2, sprawdzam czy opcja 1 przestaje być selected, a wybrana jest opcja 2
 
-    // case - walidacja danych - czy można wpisać tekst
+    // case 8 - walidacja danych - czy można wpisać tekst
 
 }
