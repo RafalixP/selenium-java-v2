@@ -18,5 +18,15 @@ public class HomePage extends BasePage {
         driver.findElement(dropdownLink).click();
         return new DropdownPage(driver);
     }
+
+    public LoginPage goToLoginPage() {
+        driver.findElement(loginLink).click();
+        return new LoginPage(driver);
+    }
+
+    public CheckboxPage goToCheckboxPage() {
+        driver.findElement(checkboxLink).click();
+        return new CheckboxPage(driver);
+    }
     
 }

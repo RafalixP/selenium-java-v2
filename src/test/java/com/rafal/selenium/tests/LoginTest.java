@@ -5,6 +5,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.rafal.selenium.pages.LoginPage;
+import com.rafal.selenium.pages.HomePage;
+
+import org.openqa.selenium.By;
 //import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.time.Duration;
@@ -17,13 +20,14 @@ public class LoginTest extends BaseTest {
     private String password = "SuperSecretPassword!";
     private String invalidPassword = "XXXXXXXX";
 
-    private LoginPage page;
+    private LoginPage loginPage;
+    private HomePage homePage;
 
     @BeforeMethod
     public void setUpLogin() {
-        page = new LoginPage(driver); //tworzymy nowy obiekt - instancję klasy LoginPage
-        //wchodzimy na podstronę Login
-        driver.findElement(By.linkText("Form Authentication")).click();
+        homePage= new HomePage(driver);     // startujemy na stronie głównej
+        loginPage = homePage.goToLoginPage();   // przechodzimy na DropdownPage korzystając metody z klasy HomePage
+
     }
 
     @Test
@@ -31,9 +35,9 @@ public class LoginTest extends BaseTest {
         //case 1 - scenariusz pozytywny
         
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
-        page.enterUsername(username);
-        page.enterPassword(password);
-        page.clickLogin();
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
+        loginPage.clickLogin();
         
         //poczekajmy chwilę na zmianę strony (wait odziedziczony z BaseTest)
         wait.until(ExpectedConditions.urlContains("secure"));
@@ -50,9 +54,9 @@ public class LoginTest extends BaseTest {
     public void testLoginInvalidPassword() {
         //case 2 - scenariusz negatywny, nieprawidłowe hasło
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
-        page.enterUsername(username);
-        page.enterPassword(invalidPassword);
-        page.clickLogin();
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(invalidPassword);
+        loginPage.clickLogin();
 
         //poczekajmy chwilę na zmianę strony (wait odziedziczony z BaseTest)
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
@@ -72,9 +76,9 @@ public class LoginTest extends BaseTest {
     public void testLoginInvalidUsername() {
         //case 3 - scenariusz negatywny, nieprawidłowy Username
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
-        page.enterUsername("invalidUser");
-        page.enterPassword(password);
-        page.clickLogin();
+        loginPage.enterUsername("invalidUser");
+        loginPage.enterPassword(password);
+        loginPage.clickLogin();
 
         //poczekajmy chwilę na zmianę strony (wait odziedziczony z BaseTest)
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
@@ -93,7 +97,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void emptyFieldsLogin() {
         //case 4 - scenariusz negatywny, puste pola
-        page.clickLogin();
+        loginPage.clickLogin();
 
         //tu dajemy małego waita
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
