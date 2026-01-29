@@ -13,6 +13,8 @@ public class DropdownTest extends BaseTest {
     //zmienne
     private DropdownPage dropdownPage;
     private HomePage homePage;
+    private String beforeText;
+    private String afterText;
 
 
     @BeforeMethod
@@ -51,8 +53,20 @@ public class DropdownTest extends BaseTest {
         Assert.assertEquals(dropdownPage.getSelectedOptionText(), "Please select an option", "Domyślnie dropdown powinien pokazywać placeholder 'Please select an option'");
     }
 
+    
     // case 4 - Pole dropdowna nie jest edytowalne ręcznie
+    @Test
+    public void notPossibleToEditManually() {
+        beforeText = dropdownPage.getSelectedOptionText();  //bierzemy tekst placeholdera i przypisujemy go do zmiennej
+        
+        Assert.assertEquals(beforeText, "Please select an option", "Domyślnie dropdown powinien pokazywać placeholder 'Please select an option'"); // porównujemy wartość tej zmennej z oczekiwanym Stringiem
 
+        dropdownPage.tryToTypeIntoDropdown("abc");   // próbujemy wpisać tekst w pole
+
+        afterText = dropdownPage.getSelectedOptionText();  //bierzemy tekst placeholdera i przypisujemy go do zmiennej
+
+        Assert.assertEquals(beforeText, afterText, "Uwaga, coś się zmieniło");
+    }
     
 
     // case 5 - Kliknięcie opcji 2 → opcja ma selected
