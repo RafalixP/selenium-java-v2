@@ -20,9 +20,9 @@ public class CheckboxesTest extends BaseTest {
 
     }
 
+    //case 1
     @Test
     public void isBoxChecked() {
-        //case 1
         
         // sprawdzamy czy box #1 NIE jest zaznaczony
         Assert.assertFalse(checkboxesPage.isCheckboxSelected(0));
@@ -34,9 +34,9 @@ public class CheckboxesTest extends BaseTest {
         Assert.assertTrue(checkboxesPage.isCheckboxSelected(0));
     }
 
+    //case 2 - sprawdzenie czy jak zaznaczę boxa #1 i potem ODzaznaczę #2 to czy #1 nadal jest zaznaczony
     @Test
     public void clickingBetweenBoxes() {
-        //case 2 - sprawdzenie czy jak zaznaczę boxa #1 i potem ODzaznaczę #2 to czy #1 nadal jest zaznaczony
 
         // sprawdzamy czy box #1 NIE jest zaznaczony
         Assert.assertFalse(checkboxesPage.isCheckboxSelected(0));
