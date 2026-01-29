@@ -6,33 +6,35 @@ import org.testng.annotations.Test;
 import org.testng.Assert;
 
 import com.rafal.selenium.pages.DropdownPage;
+import com.rafal.selenium.pages.HomePage;
 
 public class DropdownTest extends BaseTest {
 
     //zmienne
-    private DropdownPage page;
+    private DropdownPage dropdownPage;
+    private HomePage homePage;
 
 
     @BeforeMethod
     public void setUpDropdown() {
-        page = new DropdownPage(driver); //tworzymy nowy obiekt strony
-        driver.findElement(By.linkText("Dropdown")).click(); //znajdujemy link do podstrony i klikamy go
+        homePage = new HomePage(driver);        // startujemy na stronie głównej
+        dropdownPage = homePage.goToDropdownPage(); // przechodzimy na DropdownPage korzystając metody z klasy HomePage
     }
 
     // case 1 - Po załadowaniu strony żadna opcja nie jest wybrana
     @Test
     public void defaultState_shouldShowPlaceholder() {
-        Assert.assertEquals(page.getSelectedOptionText(), "Please select an option", "Domyślnie dropdown powinien pokazywać placeholder 'Please select an option'"); // komunikat na wypadek gdyby nie było równości
+        Assert.assertEquals(dropdownPage.getSelectedOptionText(), "Please select an option", "Domyślnie dropdown powinien pokazywać placeholder 'Please select an option'"); // komunikat na wypadek gdyby nie było równości
     }
         
     // case 2 - Kliknięcie opcji 1 → opcja ma selected
     @Test
     public void selectOption1_shouldMarkItAsSelected() {
         
-        page.selectByVisibleText("Option 1");
+        dropdownPage.selectByVisibleText("Option 1");
 
         //Assert.assertTrue(driver.findElement(By.id("dropdown")).isDisplayed()); // to jest tu niepotrzebne, bo nas interesuje wybrana opcja, a nie czy box się wyświetlił
-        Assert.assertEquals(page.getSelectedOptionText(), "Option 1"); 
+        Assert.assertEquals(dropdownPage.getSelectedOptionText(), "Option 1"); 
 
     }
 
