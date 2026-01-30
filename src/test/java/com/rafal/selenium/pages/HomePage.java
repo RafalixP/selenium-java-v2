@@ -8,6 +8,7 @@ public class HomePage extends BasePage {
     private By dropdownLink = By.linkText("Dropdown");
     private By loginLink =  By.linkText("Form Authentication");
     private By checkboxesLink = By.linkText("Checkboxes");
+    private By hoversLink = By.linkText("Hovers");
 
     //konstruktor
     public HomePage(WebDriver driver) {
@@ -27,6 +28,11 @@ public class HomePage extends BasePage {
     public CheckboxesPage goToCheckboxesPage() {
         driver.findElement(checkboxesLink).click();
         return new CheckboxesPage(driver);
+    }
+
+    public HoversPage goToHoversPage() {
+        driver.findElement(hoversLink).click();
+        return new HoversPage(driver);
     }
     
 }
