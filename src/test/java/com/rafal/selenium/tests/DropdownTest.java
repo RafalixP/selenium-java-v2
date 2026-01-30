@@ -59,7 +59,8 @@ public class DropdownTest extends BaseTest {
     public void notPossibleToEditManually() {
         beforeText = dropdownPage.getSelectedOptionText();  //bierzemy tekst placeholdera i przypisujemy go do zmiennej
         
-        Assert.assertEquals(beforeText, "Please select an option", "Domyślnie dropdown powinien pokazywać placeholder 'Please select an option'"); // porównujemy wartość tej zmennej z oczekiwanym Stringiem
+        // porównujemy wartość tej zmennej z oczekiwanym Stringiem
+        Assert.assertEquals(beforeText, "Please select an option", "Domyślnie dropdown powinien pokazywać placeholder 'Please select an option'"); 
 
         dropdownPage.tryToTypeIntoDropdown("abc");   // próbujemy wpisać tekst w pole
 
@@ -69,7 +70,43 @@ public class DropdownTest extends BaseTest {
     }
     
 
-    // case 5 - Kliknięcie opcji 2 → opcja ma selected
+    // case 5.1 - Kliknięcie opcji 2 → czy opcja 2 jest wybrana 
+    @Test
+    public void clickOption2_shouldSelectOption2() {
+        //bierzemy tekst placeholdera i przypisujemy go do zmiennej
+        beforeText = dropdownPage.getSelectedOptionText();
+        System.out.println("Tekst domyślny: " + beforeText);
+        
+        // porównujemy wartość tej zmiennej z oczekiwanym placeholderem
+        Assert.assertEquals(beforeText, "Please select an option", "Domyślnie dropdown powinien pokazywać placeholder 'Please select an option'");
+
+        //wybieramy opcję 2 z dropdowna
+        dropdownPage.selectByVisibleText("Option 2");
+
+        //pobieramy tekst PO kliknięciu
+        afterText = dropdownPage.getSelectedOptionText();
+        System.out.println("Tekst po kliknięciu: " + afterText);
+
+        //sprawdzamy status dropdowna - oczekiwana wartość: Option 2
+        Assert.assertEquals(afterText, "Option 2", "Ups, coś nie zadziałało");
+    }
+
+
+    
+    // case 5.2 - Kliknięcie opcji 2 → opcja ma selected
+    @Test
+    public void clickOption2_Option2ShouldHaveSelectedAttr() {
+        // sprawdzamy czy opcja 2 ma atrybut selected - nie powinna
+        Assert.assertEquals(dropdownPage.getSelectedOptionValue(), "", "Nieprawidłowa wartość domyślna dropdowna");
+        System.out.println("Domyślna wartość value to: " + dropdownPage.getSelectedOptionValue());
+        //wybieramy opcję 2
+        dropdownPage.selectByVisibleText("Option 2");
+
+        System.out.println("Wartość value po kliknięciu Option 2 to: " + dropdownPage.getSelectedOptionValue());
+        
+        // sprawdzamy czy opcja 2 ma atrybut selected - teraz już powinna
+        Assert.assertEquals(dropdownPage.getSelectedOptionValue(), "2", "Nieprawidłowa wartość dropdowna dla Opcji 2");
+    }
 
     // case 6 - kolejność opcji: czy 1 jest faktycznie pierwsza
 
