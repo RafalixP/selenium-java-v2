@@ -1,4 +1,6 @@
 package com.rafal.selenium.pages;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,6 +44,18 @@ public class DropdownPage extends BasePage {
     //metoda do wpisywania tekstu w dropdowna
     public void tryToTypeIntoDropdown(String text) {
         driver.findElement(dropdownLocator).sendKeys(text);
+    }
+
+    //metoda zwracająca listę tekstów opcji dropdowna
+    public List<String> getDropdownOptionsText() {
+        WebElement dropdownElement = driver.findElement(dropdownLocator); // znajdź dropdowna
+        Select select = new Select(dropdownElement);    // Tworzymy obiekt typu Select dla danego elementu dropdownElement, 
+                                                        // aby móc korzystać ze specjalnych metod klasy Select (np. getOptions(), selectByVisibleText(), selectByValue())
+
+        return select.getOptions()  // metoda która wyciąga nam wszystkie opcje naszego dropdowna
+        .stream()                   // iterujemy przez wszystkie te opcje
+        .map(WebElement::getText)   // dla każdej z opsji intersuje nas tekst (to co widzi user)
+        .toList();                  // i z tych tekstów tworzymy listę
     }
 
 }
