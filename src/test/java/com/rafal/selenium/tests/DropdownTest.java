@@ -137,12 +137,19 @@ public class DropdownTest extends BaseTest {
     // case 6.1 - kolejność opcji: czy Option 1 jest faktycznie pierwsza
     @Test
     public void option1ShouldBeBeforeOption2() {
-        List<String> option = dropdownPage.getDropdownOptionsText();    // tworzymy listę stringów które są nazwami poszczególnych opcji dropdowna
+        List<String>  options= dropdownPage.getDropdownOptionsText();    // tworzymy listę stringów które są nazwami poszczególnych opcji dropdowna
 
-        Assert.assertTrue(option.indexOf("Option 1") < option.indexOf("Option 2"), "coś tu jest nie tak, Option 1 powinna być przed Option 2");
+        Assert.assertTrue(options.indexOf("Option 1") < options.indexOf("Option 2"), "coś tu jest nie tak, Option 1 powinna być przed Option 2");
     }
 
     // case 6.2 - kolejność opcji: czy value="1" jest nad value="2"
+
+    @Test
+    public void value1ShouldBeBeforeValue2() {
+        List<String> values = dropdownPage.getDropdownOptionsValues();  // pobieramy values dla wszystkich option dropdowna
+
+        Assert.assertTrue(values.indexOf("1") < values.indexOf("2"), "coś tu jest nie tak, value='1' powinno być przed value='2'");
+    }
 
     // case 7 - wybieram 1, potem 2, sprawdzam czy opcja 1 przestaje być selected, a wybrana jest opcja 2
 
