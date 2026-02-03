@@ -25,6 +25,7 @@ public class DropdownTest extends BaseTest {
         dropdownPage = homePage.goToDropdownPage(); // przechodzimy na DropdownPage korzystając metody z klasy HomePage
     }
 
+
     // case 1 - Po załadowaniu strony żadna opcja nie jest wybrana
     @Test
     public void defaultState_shouldShowPlaceholder() {
@@ -40,7 +41,6 @@ public class DropdownTest extends BaseTest {
 
         //Assert.assertTrue(driver.findElement(By.id("dropdown")).isDisplayed()); // to jest tu niepotrzebne, bo nas interesuje wybrana opcja, a nie czy box się wyświetlił
         Assert.assertEquals(dropdownPage.getSelectedOptionText(), "Option 1"); 
-
     }
 
 
@@ -54,6 +54,7 @@ public class DropdownTest extends BaseTest {
         //ponownie sprawdzamy czy jest widoczny placeholder
         Assert.assertEquals(dropdownPage.getSelectedOptionText(), "Please select an option", "Domyślnie dropdown powinien pokazywać placeholder 'Please select an option'");
     }
+
 
     // case 3.2 - po wybraniu opcji 1 z dropdowna i wykonaniu reload resetuje się również stan dropdowna
     @Test
@@ -134,6 +135,7 @@ public class DropdownTest extends BaseTest {
         Assert.assertEquals(dropdownPage.getSelectedOptionValue(), "2", "Nieprawidłowa wartość dropdowna dla Opcji 2");
     }
 
+
     // case 6.1 - kolejność opcji: czy Option 1 jest faktycznie pierwsza
     @Test
     public void option1ShouldBeBeforeOption2() {
@@ -142,8 +144,8 @@ public class DropdownTest extends BaseTest {
         Assert.assertTrue(options.indexOf("Option 1") < options.indexOf("Option 2"), "coś tu jest nie tak, Option 1 powinna być przed Option 2");
     }
 
-    // case 6.2 - kolejność opcji: czy value="1" jest nad value="2"
 
+    // case 6.2 - kolejność opcji: czy value="1" jest nad value="2"
     @Test
     public void value1ShouldBeBeforeValue2() {
         List<String> values = dropdownPage.getDropdownOptionsValues();  // pobieramy values dla wszystkich option dropdowna
@@ -151,6 +153,23 @@ public class DropdownTest extends BaseTest {
         Assert.assertTrue(values.indexOf("1") < values.indexOf("2"), "coś tu jest nie tak, value='1' powinno być przed value='2'");
     }
 
+
     // case 7 - wybieram 1, potem 2, sprawdzam czy opcja 1 przestaje być selected, a wybrana jest opcja 2
+    @Test
+    public void click1click2_selected_should_move() {
+        // klikamy 1
+        dropdownPage.selectByVisibleText("Option 1");
+
+        // sprawdzamy czy 1 ma selected
+        Assert.assertEquals(dropdownPage.getSelectedOptionText(), "Option 1", "Coś tu jest nie tak, opcja 1 powinna być selected");
+
+        // klikamy 2
+        dropdownPage.selectByVisibleText("Option 2");
+
+        // sprawdzamy czy 2 ma selected
+        Assert.assertEquals(dropdownPage.getSelectedOptionText(), "Option 2", "Coś tu jest nie tak, opcja 2 powinna być teraz selected");
+
+        // ponieważ w dropdownie tylko jedna opcja jednocześnie może być selected, to nie sprawdzamy czy 1 NIE ma selected
+    }
 
 }
