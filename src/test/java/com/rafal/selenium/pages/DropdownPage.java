@@ -58,4 +58,16 @@ public class DropdownPage extends BasePage {
         .toList();                  // i z tych tekstów tworzymy listę
     }
 
+    // metoda zwracająca listę wartości wszystkich value z dropdowna 
+
+    public List<String> getDropdownOptionsValues() {
+        WebElement dropdownElement = driver.findElement(dropdownLocator);   // znajdź dropdowna
+        Select select = new Select(dropdownElement);                        // Tworzymy obiekt typu Select dla danego elementu dropdownElement, 
+
+        return select.getOptions()                          // metoda do wyciągnięcia wszystkich opcji z dropdowna
+        .stream()                                           // iterujemy po nich
+        .map(option -> option.getAttribute("value"))    // dla każdej z opcji interesuje nad jej value
+        .filter(value -> !value.isEmpty())                  // filtrujemy po value, bo nie interesuje nas placeholder
+        .toList();                                          // robimy z tego listę którą będzie zwracać nasza metoda
+   }
 }
