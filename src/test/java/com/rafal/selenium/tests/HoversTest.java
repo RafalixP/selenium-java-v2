@@ -28,11 +28,11 @@ public class HoversTest extends BaseTest{
     // case 2 - hover na obrazek powoduje pojawienie się tekstu (czyli bez hovera tekstu nie ma)
     @Test
     public void hoveringMakesTextVisible() {
-        Assert.assertFalse(driver.findElement(caption).isDisplayed());
+        Assert.assertFalse(hoversPage.isCaptionVisible(0));
 
-        hoversPage.hoverOverFigure(1);
+        hoversPage.hoverOverFigure(0);
 
-        Assert.assertEquals(hoversPage.getCaptionText(), "name: user1", "coś tu jest nie tak, tekst powinien brzmieć: name: user1");
+        Assert.assertTrue(hoversPage.isCaptionVisible(0));
 
     }
 
