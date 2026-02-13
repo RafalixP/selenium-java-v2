@@ -39,8 +39,19 @@ public class HoversTest extends BaseTest{
 
     }
 
-    // case 3 - tekst który się pojawia jest poprawny
-    
+    // case 3.1 - tekst który się pojawia jest poprawny
+    @Test
+    public void textIsCorrect() {
+        hoversPage.hoverOverFigure(0);
+        Assert.assertEquals(hoversPage.getCaptionText(0), "name: user1", "coś tu jest nie tak, tekst się nie zgadza");
+        System.out.println("Znaleziony tekst to: " + hoversPage.getCaptionText(0));
+
+        hoversPage.hoverOverFigure(1);
+        Assert.assertEquals(hoversPage.getCaptionText(1), "name: user2", "coś tu jest nie tak, tekst się nie zgadza");
+
+        hoversPage.hoverOverFigure(2);
+        Assert.assertEquals(hoversPage.getCaptionText(2), "name: user3", "coś tu jest nie tak, tekst się nie zgadza");
+    }
 
     // case 4 - link który się pojawia jest poprawny (i może działa jeszcze)
 }

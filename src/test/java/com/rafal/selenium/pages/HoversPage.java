@@ -32,7 +32,7 @@ public class HoversPage extends BasePage{
 
     // metoda zwracająca tekst który powinien pojawić się pod wybranym i zhoverowanym przez nas obrazkiem
     public String getCaptionText(int index) {
-        return driver.findElement(caption).get(index).getText();
+        return driver.findElements(caption).get(index).getText();
     } 
 
     // metoda zwracająca ilość obrazków na stronie
