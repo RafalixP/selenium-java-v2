@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 public class HoversPage extends BasePage{
     // zmienne
-    private By figures = By.cssSelector(".figure");     // to będzie obrazek ze strony
+    private By figures = By.cssSelector(".figure");     // to będzie (pierwszy) obrazek ze strony
     private By caption = By.cssSelector(".figcaption h5");  // to będą elementy które pojawią się po hoverze
 
     // konstruktor
@@ -31,8 +31,8 @@ public class HoversPage extends BasePage{
     }
 
     // metoda zwracająca tekst który powinien pojawić się pod wybranym i zhoverowanym przez nas obrazkiem
-    public String getCaptionText() {
-        return driver.findElement(caption).getText();
+    public String getCaptionText(int index) {
+        return driver.findElement(caption).get(index).getText();
     } 
 
     // metoda zwracająca ilość obrazków na stronie
