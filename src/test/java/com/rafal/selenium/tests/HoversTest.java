@@ -1,6 +1,5 @@
 package com.rafal.selenium.tests;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.Assert;
@@ -21,7 +20,12 @@ public class HoversTest extends BaseTest{
         hoversPage = homePage.goToHoversPage();    // przechodzimy na podstronę Hover
     }
 
-    // case 1 - po załadaowaniu pod strony Hovers widoczne są trzy obrazki
+    // case 1 - po załadaowaniu podstrony Hovers widoczne są trzy obrazki
+    @Test
+    public void threeImagesShouldBeVisible() {
+        Assert.assertEquals(hoversPage.getNumberOfFigures(), 3, "coś tu jest nie tak, powinny być trzy obrazki");
+    }
+
     
 
     // case 2 - hover na obrazek powoduje pojawienie się tekstu (czyli bez hovera tekstu nie ma)
@@ -36,6 +40,7 @@ public class HoversTest extends BaseTest{
     }
 
     // case 3 - tekst który się pojawia jest poprawny
+    
 
     // case 4 - link który się pojawia jest poprawny (i może działa jeszcze)
 }

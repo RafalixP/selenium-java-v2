@@ -34,6 +34,11 @@ public class HoversPage extends BasePage{
     public String getCaptionText() {
         return driver.findElement(caption).getText();
     } 
+
+    // metoda zwracająca ilość obrazków na stronie
+    public int getNumberOfFigures() {
+        return driver.findElements(figures).size();
+    }
     
 
 }
