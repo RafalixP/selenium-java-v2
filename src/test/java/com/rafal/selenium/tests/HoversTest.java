@@ -53,5 +53,21 @@ public class HoversTest extends BaseTest{
         Assert.assertEquals(hoversPage.getCaptionText(2), "name: user3", "coś tu jest nie tak, tekst się nie zgadza");
     }
 
-    // case 4 - link który się pojawia jest poprawny (i może działa jeszcze)
+    // case 4 - link który się pojawia jest poprawny (i może działa jeszcze) - z pętlą
+    @Test
+    public void workingLinkIsShown() {
+
+        for (int i = 0; i < hoversPage.getNumberOfFigures(); i++) {
+
+            hoversPage.hoverOverFigure(i);
+            Assert.assertTrue(hoversPage.isViewProfileLinkVisible(i), "Link 'View profile' nie jest widoczny dla indeksu " + i);
+
+            hoversPage.clickViewProfile(i);
+            //Assert.assertEquals(driver.getCurrentUrl(), "https://the-internet.herokuapp.com/users/" + (i + 1));
+
+            driver.navigate().back();
+        }
+
+    }
+
 }
