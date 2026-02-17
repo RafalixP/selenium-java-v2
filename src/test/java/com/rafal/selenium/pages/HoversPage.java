@@ -12,7 +12,7 @@ public class HoversPage extends BasePage{
     // zmienne
     private By figures = By.cssSelector(".figure");     // to będzie (pierwszy) obrazek ze strony
     private By caption = By.cssSelector(".figcaption h5");  // to będą elementy które pojawią się po hoverze
-    private By webLink = By.cssSelector(".figcaption a"): // to będzie link który pojawi się po hoverze
+    private By webLink = By.cssSelector(".figcaption a"); // to będzie link który pojawi się po hoverze
 
     // konstruktor
     public HoversPage(WebDriver driver) {
