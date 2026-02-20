@@ -60,10 +60,10 @@ public class HoversTest extends BaseTest{
         for (int i = 0; i < hoversPage.getNumberOfFigures(); i++) {
 
             hoversPage.hoverOverFigure(i);
-            Assert.assertTrue(hoversPage.isViewProfileLinkVisible(i), "Link 'View profile' nie jest widoczny dla indeksu " + i);
+            // Assert.assertTrue(hoversPage.isViewProfileLinkVisible(i), "Link 'View profile' nie jest widoczny dla indeksu " + i);
 
             hoversPage.clickViewProfile(i);
-            //Assert.assertEquals(driver.getCurrentUrl(), "https://the-internet.herokuapp.com/users/" + (i + 1));
+            Assert.assertEquals(driver.getCurrentUrl(), "https://the-internet.herokuapp.com/users/" + (i + 1));
 
             driver.navigate().back();
         }
