@@ -7,6 +7,7 @@ import java.time.Duration;
 public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
+    private final Duration WAIT_TIME = Duration.ofSeconds(5);   // stała
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
