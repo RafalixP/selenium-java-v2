@@ -1,6 +1,8 @@
 package com.rafal.selenium.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
@@ -11,7 +13,7 @@ public class HomePage extends BasePage {
     private By hoversLink = By.linkText("Hovers");
     private By dynamicLoadingLink = By.linkText("Dynamic Loading");
 
-    private final Duration WAIT_TIME = Duration.ofSeconds(5);   // stała
+//    private final Duration WAIT_TIME = Duration.ofSeconds(5);   // stała, przeniosłem do BasePage
 
     //konstruktor
     public HomePage(WebDriver driver) {
@@ -20,35 +22,28 @@ public class HomePage extends BasePage {
 
     // metody
 
-    // kliknij dopiero kiedy element da się kliknąć
-    private void clickWhenReady(By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-        element.click();
-    } 
-
     public DropdownPage goToDropdownPage() {
-        driver.clickWhenReady(dropdownLink);
+        clickWhenReady(dropdownLink);
         return new DropdownPage(driver);
     }
 
     public LoginPage goToLoginPage() {
-        driver.clickWhenReady(loginLink);
+        clickWhenReady(loginLink);
         return new LoginPage(driver);
     }
 
     public CheckboxesPage goToCheckboxesPage() {
-        driver.clickWhenReady(checkboxesLink);
+        clickWhenReady(checkboxesLink);
         return new CheckboxesPage(driver);
     }
 
     public HoversPage goToHoversPage() {
-        driver.clickWhenReady(hoversLink);
+        clickWhenReady(hoversLink);
         return new HoversPage(driver);
     }
 
     public DynamicLoadingPage goToDynamicLoadingPage() {
-        driver.clickWhenReady(dynamicLoadingLink);
+        clickWhenReady(dynamicLoadingLink);
         return new DynamicLoadingPage(driver);
     }
     
