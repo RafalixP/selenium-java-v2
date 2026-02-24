@@ -20,7 +20,7 @@ public class DynamicLoadingTest extends BaseTest{
 
     // case 1 - example 1 - element on the page is hidden
     @Test
-    public void example1_test() {
+    public void example1_elementInitiallyHidden_showsHelloWorldAfterClick() {
         dynamicLoadingPage.clickExample_1();
         dynamicLoadingPage.clickStartButton();
         //dynamicLoadingPage.waitForLoaderToDisappear(); // niepotrzebne
@@ -28,9 +28,9 @@ public class DynamicLoadingTest extends BaseTest{
         
     }
 
-    // case 2 - example 2 - element on the page does not exists until the loader dissapear
+    // case 2 - example 2 - element on the page does not exists until the loader disapear
     @Test
-    public void example2_test() {
+    public void example2_elementOnThePageDoesNotExistsUntilTheLoaderDisapear() {
         dynamicLoadingPage.clickExample_2();
         Assert.assertFalse(dynamicLoadingPage.isHelloWorldInitiallyVisible());
         dynamicLoadingPage.clickStartButton();
