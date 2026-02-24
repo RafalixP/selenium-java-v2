@@ -10,11 +10,11 @@ import java.time.Duration;
 public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
-    //protected final Duration WAIT_TIME = Duration.ofSeconds(5);   // stała
+    protected final Duration DEFAULT_TIME = Duration.ofSeconds(10);   // stała
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, DEFAULT_TIME);
     }
 
     // kliknij dopiero kiedy element da się kliknąć
