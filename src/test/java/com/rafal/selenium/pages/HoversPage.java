@@ -54,7 +54,7 @@ public class HoversPage extends BasePage{
     public void clickViewProfile(int index) {
         WebElement link = new WebDriverWait(driver, Duration.ofSeconds(5))
                         .until(ExpectedConditions.elementToBeClickable(driver.findElements(webLink).get(index)));
-link.click();
+        link.click();
     }
 
 }
