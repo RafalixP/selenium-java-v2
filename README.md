@@ -1,109 +1,159 @@
-# Selenium Java Test Automation Framework - v2
+# Selenium Java Test Automation Framework
 
-Test automation framework using Selenium WebDriver, Java, and TestNG with Page Object Model design pattern.
+A scalable test automation framework built with Selenium WebDriver, Java, and TestNG, following the Page Object Model (POM) design pattern.
 
-## 🛠️ Technologies
+This project was created as part of a structured QA Automation learning path and is continuously extended with new features and best practices.
 
-- **Java 25**
-- **Selenium WebDriver 4.12.1**
-- **TestNG 7.8.0**
-- **Maven 3.9.12**
-- **ChromeDriver**
+## 🛠 Tech Stack
+
+- Java 25
+- Selenium WebDriver 4.12.1
+- TestNG 7.8.0
+- Maven 3.9.12
+- ChromeDriver
+- Page Object Model (POM)
+
+## 🏗 Architecture
+
+The framework follows clean separation of concerns:
+
+- **Tests layer** – contains test logic and assertions
+- **Page Objects layer** – encapsulates UI elements and actions
+- **Base classes** – reusable WebDriver setup and utility methods
+- **Explicit waits** – stable handling of dynamic elements
 
 ## 📁 Project Structure
-
 ```
 selenium-java/
 ├── src/
 │   ├── main/java/
 │   │   └── com/rafal/selenium/
-│   │       └── HelloSelenium.java
 │   └── test/java/
 │       └── com/rafal/selenium/
+│           ├── base/
 │           ├── pages/
-│           │   ├── LoginPage.java
-│           │   └── SecurePage.java
 │           ├── tests/
-│           │   └── LoginTestPOM.java
-│           └── BasicSeleniumTest.java
+│           └── utils/
 ├── pom.xml
 └── testng.xml
 ```
 
 ## 🚀 Running Tests
 
-### Run all tests:
-```bash
-mvn test
-```
-
-### Run specific test class:
-```bash
-mvn test -Dtest=LoginTestPOM
-```
-
-### Compile and run:
+Run all tests:
 ```bash
 mvn clean test
 ```
 
-## 📋 Test Scenarios
-
-### LoginTestPOM
-- **testSuccessfulLogin** - Verify successful login with valid credentials
-- **testLoginAndLogout** - Test complete login/logout cycle
-- **testInvalidLogin** - Verify error handling with invalid credentials
-
-### BasicSeleniumTest  - Initial approach without POM (for learning purposes)
-- **testLogin** - Basic login test with assertions
-- **testDifferentLocators** - Demonstration of various Selenium locators
-
-## 🎯 Page Object Model
-
-The framework implements Page Object Model (POM) design pattern:
-
-- **LoginPage** - Encapsulates login page elements and actions
-- **SecurePage** - Encapsulates secure area page elements and actions
-
-## ⚙️ Configuration
-
-### Chrome Options
-- Disabled password manager
-- Disabled save password bubble
-- Disabled web security warnings
-- Disabled notifications
-
-### Test Site
-Tests run against: `https://the-internet.herokuapp.com/`
-
-## 📊 Test Results
-
-All tests passing:
+Run specific test class:
+```bash
+mvn test -Dtest=LoginTestPOM
 ```
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
+
+## 📋 Implemented Test Scenarios
+
+### 🔐 Authentication – Login Flow
+**Covered by:** LoginTest
+
+**Scenarios:**
+- Successful login with valid credentials
+- Login and logout flow
+- Invalid login handling with proper error message assertion
+
+**Technical aspects:**
+- Form interactions
+- Assertions on flash messages
+- URL verification
+- Page transition handling
+
+### ⚙️ Dynamic Elements Handling
+**Covered by:** DynamicLoadingTest
+
+**Scenarios:**
+- Handling element that is hidden in DOM and becomes visible
+- Handling element rendered dynamically after clicking "Start"
+
+**Technical aspects:**
+- Explicit waits (WebDriverWait)
+- Waiting for element visibility
+- Waiting for loader disappearance
+- Verifying initial and final element state
+
+> 👉 **To jest bardzo ważne** — pokazuje, że rozumiesz synchronizację, a to jest 80% realnych problemów w Selenium.
+
+### ☑️ Form Controls – Checkboxes
+**Covered by:** CheckboxesTest
+
+**Scenarios:**
+- Selecting checkbox
+- Unselecting checkbox
+- Verifying selected state
+
+**Technical aspects:**
+- Working with isSelected()
+- Handling state-based assertions
+
+### 🔽 Dropdown Handling
+**Covered by:** DropdownTest
+
+**Scenarios:**
+- Selecting option by visible text
+- Selecting option by value
+- Verifying selected option
+
+**Technical aspects:**
+- Using Select class
+- Working with `<select>` elements
+- Assertion of selected values
+
+### 👤 Hover Interactions
+**Covered by:** HoversTest
+
+**Scenarios:**
+- Revealing hidden elements on hover
+- Verifying dynamic content visibility
+
+**Technical aspects:**
+- Actions class
+- Mouse interactions
+- Dynamic UI behaviour
+
+## 🧠 Key Concepts Implemented
+
+- Page Object Model (POM)
+- Explicit waits (WebDriverWait)
+- Reusable base test setup
+- Separation of test logic from page logic
+- Clean and maintainable test design
+- Proper assertions for preconditions and postconditions
+
+## 🌐 Test Environment
+
+Tests run against: **https://the-internet.herokuapp.com/**
+
+## 📊 Sample Test Execution
+```
+Tests run: 22, Failures: 0, Errors: 0, Skipped: 0
 BUILD SUCCESS
 ```
 
-## 🎓 Learning Path
+## 📈 Roadmap
 
-This project follows a structured learning plan covering:
-- ✅ Java basics for QA
-- ✅ Selenium WebDriver fundamentals
-- ✅ Locators (ID, Name, CSS, XPath)
-- ✅ TestNG annotations and assertions
-- ✅ Page Object Model implementation
-- ✅ WebDriverWait (planned)
-- ⏳ CI/CD integration (planned)
+- [ ] WebDriverManager integration
+- [ ] Headless execution mode
+- [ ] CI integration (GitHub Actions)
+- [ ] Test reporting (Allure or ExtentReports)
+- [ ] Parallel execution
+- [ ] Cross-browser support
 
-## 📝 Notes
+## 🎯 Purpose of This Project
 
-- ChromeDriver must be installed and available in PATH
-- Java 25 required (or modify `maven.compiler.release` in pom.xml)
-
-## 🤝 Contributing
-
-This is a learning project. Feel free to fork and experiment!
+This repository demonstrates:
+- Practical Selenium knowledge
+- Understanding of automation architecture
+- Ability to build maintainable test frameworks
+- Clean code practices in QA automation
 
 ## 📄 License
 
-MIT License - feel free to use for learning purposes.
+MIT License – free for learning and experimentation.
