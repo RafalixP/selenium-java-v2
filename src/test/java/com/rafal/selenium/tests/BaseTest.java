@@ -17,12 +17,12 @@ import com.rafal.selenium.listeners.ScreenshotListener;    //do obsługi screen�
 @Listeners(ScreenshotListener.class)  //dodajemy listenera do obsługi screenów
 public class BaseTest {
     protected WebDriver driver;
-    protected WebDriverWait wait;
+    //protected WebDriverWait wait;
 
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.get("https://the-internet.herokuapp.com");
     }
 
