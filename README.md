@@ -57,8 +57,8 @@ mvn test -Dtest=LoginTestPOM
 
 **Scenarios:**
 - Successful login with valid credentials
-- Login and logout flow
-- Invalid login handling with proper error message assertion
+- Invalid login handling (wrong password, wrong username, empty fields)
+- Proper error message assertion
 
 **Technical aspects:**
 - Form interactions
