@@ -8,7 +8,7 @@ import com.rafal.selenium.pages.LoginPage;
 import com.rafal.selenium.pages.HomePage;
 
 import org.openqa.selenium.By;
-import java.time.Duration;
+//import java.time.Duration;
 
 
 public class LoginTest extends BaseTest {
@@ -48,32 +48,18 @@ public class LoginTest extends BaseTest {
         loginPage.enterUsername(username);
         loginPage.enterPassword(invalidPassword);
         loginPage.clickLogin();
-
-        //poczekajmy chwilę na zmianę strony (wait odziedziczony z BaseTest)
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
-
+        
         //czy logowanie się udało?
-        // Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
         Assert.assertTrue(loginPage.isFlashMessageVisible());
-
-        //a wyświetl no adres strony
-        //String currentUrl = driver.getCurrentUrl();
-        //System.out.println("scenariusz negatywny, nieprawidłowe hasło");
-        //System.out.println("Current URL is: " + currentUrl);
-
-
     }
     
+    //case 3 - scenariusz negatywny, nieprawidłowy Username
     @Test
     public void testLoginInvalidUsername() {
-        //case 3 - scenariusz negatywny, nieprawidłowy Username
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         loginPage.enterUsername("invalidUser");
         loginPage.enterPassword(password);
         loginPage.clickLogin();
-
-        //poczekajmy chwilę na zmianę strony (wait odziedziczony z BaseTest)
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
 
         //czy logowanie się udało?
         Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
@@ -82,19 +68,12 @@ public class LoginTest extends BaseTest {
         String currentUrl = driver.getCurrentUrl();
         System.out.println("scenariusz negatywny, nieprawidłowy Username");
         System.out.println("Current URL is: " + currentUrl);
-
-
     }
 
+    //case 4 - scenariusz negatywny, puste pola
     @Test
     public void emptyFieldsLogin() {
-        //case 4 - scenariusz negatywny, puste pola
         loginPage.clickLogin();
-
-        //tu dajemy małego waita
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
-        
-        //sprawdzamy czy faktycznie wyświetlił się nam komunikat. Ale chyba nie potrzebujemy tego...
         Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
         System.out.println("scenariusz negatywny, puste pola");
     }
