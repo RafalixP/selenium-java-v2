@@ -2,15 +2,25 @@ package com.rafal.selenium.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
     private static Properties properties = new Properties();
+    //private static InputStream;
 
     static {
+        InputStream input = ConfigReader.class.getClassLoader().getResourceAsStream("config.properties");
+
+        if (input == null) {
+            throw new RuntimeException("Ups, nie mogę znaleźć pliku config");
+            }
+
         try {
-            properties.load(ConfigReader.class.getClassLoader().getResourceAsStream("config.properties"));
-        } catch (IOException e) {
+            properties.load(input);     // wczytujemy zawartośc pliku config do obiektu properties
+            input.close();
+        }
+        catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("Ups, nie udało się wczytać pliku konfiguracyjnego");
         }
