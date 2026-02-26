@@ -9,7 +9,7 @@ import com.rafal.selenium.pages.HomePage;
 
 import org.openqa.selenium.By;
 //import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+//import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.time.Duration;
 
 
@@ -30,9 +30,9 @@ public class LoginTest extends BaseTest {
 
     }
 
+    //case 1 - scenariusz pozytywny
     @Test
     public void testLogin() {
-        //case 1 - scenariusz pozytywny
         
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         loginPage.enterUsername(username);
@@ -40,34 +40,37 @@ public class LoginTest extends BaseTest {
         loginPage.clickLogin();
         
         //poczekajmy chwilę na zmianę strony (wait odziedziczony z BaseTest)
-        wait.until(ExpectedConditions.urlContains("secure"));
+        //wait.until(ExpectedConditions.urlContains("secure"));
 
         //czy logowanie się udało?
-        String currentUrl = driver.getCurrentUrl();
-        System.out.println("scenariusz pozytywny - logowanie udane");
-        System.out.println("Current URL is: " + currentUrl);
-        Assert.assertTrue(currentUrl.contains("secure"));
+        //String currentUrl = driver.getCurrentUrl();
+        //System.out.println("scenariusz pozytywny - logowanie udane");
+        //System.out.println("Current URL is: " + currentUrl);
+        //Assert.assertTrue(currentUrl.contains("secure"));
+
+        Assert.assertTrue(loginPage.isLoginSuccessful());
 
     }
 
+    //case 2 - scenariusz negatywny, nieprawidłowe hasło
     @Test
     public void testLoginInvalidPassword() {
-        //case 2 - scenariusz negatywny, nieprawidłowe hasło
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         loginPage.enterUsername(username);
         loginPage.enterPassword(invalidPassword);
         loginPage.clickLogin();
 
         //poczekajmy chwilę na zmianę strony (wait odziedziczony z BaseTest)
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
 
         //czy logowanie się udało?
-        Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
+        // Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
+        Assert.assertTrue(loginPage.isFlashMessageVisible());
 
         //a wyświetl no adres strony
-        String currentUrl = driver.getCurrentUrl();
-        System.out.println("scenariusz negatywny, nieprawidłowe hasło");
-        System.out.println("Current URL is: " + currentUrl);
+        //String currentUrl = driver.getCurrentUrl();
+        //System.out.println("scenariusz negatywny, nieprawidłowe hasło");
+        //System.out.println("Current URL is: " + currentUrl);
 
 
     }
@@ -81,7 +84,7 @@ public class LoginTest extends BaseTest {
         loginPage.clickLogin();
 
         //poczekajmy chwilę na zmianę strony (wait odziedziczony z BaseTest)
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
 
         //czy logowanie się udało?
         Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
@@ -100,7 +103,7 @@ public class LoginTest extends BaseTest {
         loginPage.clickLogin();
 
         //tu dajemy małego waita
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
         
         //sprawdzamy czy faktycznie wyświetlił się nam komunikat. Ale chyba nie potrzebujemy tego...
         Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
