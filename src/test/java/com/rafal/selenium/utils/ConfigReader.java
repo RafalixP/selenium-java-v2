@@ -9,9 +9,7 @@ public class ConfigReader {
 
     static {
         try {
-            FileInputStream file = new FileInputStream("src/resources/config.properties"); // nowy obiekt - plik z zewnątrz
-            properties.load(file);   // do obiektu properties ładujemy to co było w otwartym pliku
-            file.close();      // zamykamy plik
+            properties.load(ConfigReader.class.getClassLoader().getResourceAsStream("config.properties"));
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("Ups, nie udało się wczytać pliku konfiguracyjnego");
