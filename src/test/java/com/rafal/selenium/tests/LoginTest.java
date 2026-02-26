@@ -8,8 +8,6 @@ import com.rafal.selenium.pages.LoginPage;
 import com.rafal.selenium.pages.HomePage;
 
 import org.openqa.selenium.By;
-//import org.openqa.selenium.support.ui.WebDriverWait;
-//import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.time.Duration;
 
 
@@ -38,15 +36,6 @@ public class LoginTest extends BaseTest {
         loginPage.enterUsername(username);
         loginPage.enterPassword(password);
         loginPage.clickLogin();
-        
-        //poczekajmy chwilę na zmianę strony (wait odziedziczony z BaseTest)
-        //wait.until(ExpectedConditions.urlContains("secure"));
-
-        //czy logowanie się udało?
-        //String currentUrl = driver.getCurrentUrl();
-        //System.out.println("scenariusz pozytywny - logowanie udane");
-        //System.out.println("Current URL is: " + currentUrl);
-        //Assert.assertTrue(currentUrl.contains("secure"));
 
         Assert.assertTrue(loginPage.isLoginSuccessful());
 
