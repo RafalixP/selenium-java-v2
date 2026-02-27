@@ -63,7 +63,7 @@ public class LoginTest extends BaseTest {
 
         //czy logowanie się udało?
         //Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
-        Assert.assertTrue(loginPage.isFlashMessageVisible());
+        Assert.assertTrue(loginPage.isFlashMessageVisible(), "Flash message should be visible for invalid username");
 
         //a wyświetl no adres strony
         String currentUrl = driver.getCurrentUrl();
