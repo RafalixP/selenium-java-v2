@@ -42,7 +42,7 @@ public class LoginTest extends BaseTest {
     }
 
     //case 2 - scenariusz negatywny, nieprawidłowe hasło
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testLoginInvalidPassword() {
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         loginPage.enterUsername(username);
@@ -54,7 +54,7 @@ public class LoginTest extends BaseTest {
     }
     
     //case 3 - scenariusz negatywny, nieprawidłowy Username
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testLoginInvalidUsername() {
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         loginPage.enterUsername("invalidUser");
@@ -72,7 +72,7 @@ public class LoginTest extends BaseTest {
     }
 
     //case 4 - scenariusz negatywny, puste pola
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void emptyFieldsLogin() {
         loginPage.clickLogin();
         Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
