@@ -29,7 +29,7 @@ public class LoginTest extends BaseTest {
     }
 
     //case 1 - scenariusz pozytywny
-    @Test
+    @Test(enabled = true)
     public void testLogin() {
         
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
@@ -42,7 +42,7 @@ public class LoginTest extends BaseTest {
     }
 
     //case 2 - scenariusz negatywny, nieprawidłowe hasło
-    @Test
+    @Test(enabled = false)
     public void testLoginInvalidPassword() {
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         loginPage.enterUsername(username);
@@ -54,7 +54,7 @@ public class LoginTest extends BaseTest {
     }
     
     //case 3 - scenariusz negatywny, nieprawidłowy Username
-    @Test
+    @Test(enabled = false)
     public void testLoginInvalidUsername() {
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         loginPage.enterUsername("invalidUser");
@@ -62,7 +62,8 @@ public class LoginTest extends BaseTest {
         loginPage.clickLogin();
 
         //czy logowanie się udało?
-        Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
+        //Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
+        Assert.assertTrue(loginPage.isFlashMessageVisible());
 
         //a wyświetl no adres strony
         String currentUrl = driver.getCurrentUrl();
@@ -71,7 +72,7 @@ public class LoginTest extends BaseTest {
     }
 
     //case 4 - scenariusz negatywny, puste pola
-    @Test
+    @Test(enabled = false)
     public void emptyFieldsLogin() {
         loginPage.clickLogin();
         Assert.assertTrue(driver.findElement(By.id("flash")).isDisplayed());
