@@ -5,10 +5,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeOptions; // do obsługi headless
+
 import org.testng.annotations.BeforeMethod; // do @BeforeMethod
 
 
 import com.rafal.selenium.utils.ConfigReader;
+
 
 import org.testng.annotations.AfterMethod;  // do @AfterMethod
 import org.testng.annotations.Listeners;    //do obsługi screenów
@@ -20,17 +23,23 @@ import com.rafal.selenium.listeners.ScreenshotListener;    //do obsługi screen�
 public class BaseTest {
     protected WebDriver driver;
     protected String browser;
+    protected boolean headless;
 
     @BeforeMethod
     public void setUp() {
         // driver = new ChromeDriver();
 
         browser  = ConfigReader.getProperty("browser");
+        headless = Boolean.parseBoolean(ConfigReader.getProperty("headless"));
 
         switch (browser.toLowerCase()) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                if (headless) {
+                    chromeOptions.addArguments("--headless=new");
+                }
+                driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
