@@ -43,4 +43,11 @@ public class LoginPage extends BasePage {
     public void clickLogin() {
         driver.findElement(loginButton).click();
     }
+
+    //metoda dla użycia DataProvidera
+    public void login(String username, String password) {
+        enterUsername(username);
+        enterPassword(password);
+        clickLogin();
+    }
 }
