@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.rafal.selenium.pages.LoginPage;
 import com.rafal.selenium.pages.HomePage;
+import io.qameta.allure.Step;
 
 import org.openqa.selenium.By;
 //import java.time.Duration;
@@ -29,6 +30,7 @@ public class LoginTest extends BaseTest {
     }
 
     //case 1 - scenariusz pozytywny
+    @Step("Login as valid user")
     @Test(enabled = true)
     public void testLogin() {
         
