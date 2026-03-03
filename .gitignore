@@ -26,3 +26,6 @@ src/main/java/com/rafal/selenium/HelloSelenium.java
 
 # Screeny
 screenshots/
+
+# Allure results (do not commit)
+allure-results/
