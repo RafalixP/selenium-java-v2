@@ -4,60 +4,68 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.io.FileHandler;
-//import org.testng.ITestContext; 
-import org.testng.ITestListener; 
-import org.testng.ITestResult; 
+import org.testng.ITestListener;
+import org.testng.ITestResult;
 
-import java.io.File; 
-import java.io.IOException; 
-import java.time.LocalDateTime; 
+import io.qameta.allure.Allure;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.ByteArrayInputStream;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
 public class ScreenshotListener implements ITestListener {
-    @Override   // nadpisujemy metodę z ITestListener
 
-    //metoda wykonywana jeśli TestNG stwierdzi iż test się wysypał
+    @Override
     public void onTestFailure(ITestResult result) {
-        System.out.println("Test FAILED: " + result.getName());
-        
-        Object testClass = result.getInstance();    //działamy na instancji testu (tego który się wysypał)
+        captureScreenshot(result, "FAILED");
+    }
 
+    @Override
+    public void onTestSkipped(ITestResult result) {
+        captureScreenshot(result, "SKIPPED");
+    }
+
+    private void captureScreenshot(ITestResult result, String status) {
+        Object testClass = result.getInstance();
         try {
-            //reflefction
+            // pobranie drivera przez metodę getDriver() z testu
+            WebDriver driver = (WebDriver) testClass.getClass()
+                    .getMethod("getDriver")
+                    .invoke(testClass);
 
-            WebDriver driver = (WebDriver) testClass.getClass()  // bierze klasę testową
-                .getMethod("getDriver")                    // szuka metody getDriver()
-                .invoke(testClass);                             // wywołuje tą metodę na testClass
-            takeScreenshot(driver, result.getName());           // wykonuje screena z aktualnego stanu przeglądarki, getName - nazwa testu
-        } catch (Exception e) {                                 // obsługa błędu
+            takeScreenshot(driver, result.getName(), status);
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    //metoda wykonująca screeny
-    private void takeScreenshot(WebDriver driver, String testName) {
-        //tworzymy obiekt typu TakesScreenshot
-        TakesScreenshot ts = (TakesScreenshot) driver;      //tu bieżemy metodę z TakesScreenshot
+    private void takeScreenshot(WebDriver driver, String testName, String status) {
+    try {
+        // 1️⃣ Tworzymy katalog jeśli nie istnieje
+        File screenshotsDir = new File("screenshots");
+        if (!screenshotsDir.exists()) {
+            screenshotsDir.mkdir();
+        }
 
-        //robimy screena i zapisujemy go do pliku tymczasowego
-        File source = ts.getScreenshotAs(OutputType.FILE);
-
-        //tworzymy nazwę pliku z datą i godziną wykonania screena
+        // 2️⃣ Tworzymy nazwę pliku
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-        String fileName = testName + "_" + timestamp + ".png";
+        File destination = new File(screenshotsDir, testName + "_" + status + "_" + timestamp + ".png");
 
-        //określamy docelową ścieżkę zapisu screena
-        File destination = new File("screenshots/" + fileName);
+        // 3️⃣ Robimy screenshot i zapisujemy fizycznie na dysku
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        FileHandler.copy(ts.getScreenshotAs(OutputType.FILE), destination);
 
-        try {
-            //kopiujemy plik ze screena do docelowej lokalizacji
-            FileHandler.createDir(new File("screenshots")); // tworzymy katalog jeśli nie istnieje
-            FileHandler.copy(source, destination);
-            System.out.println("Screenshot saved: " + destination.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-  
+        // 4️⃣ Dodajemy ten sam screenshot do Allure jako attachment
+        byte[] content = java.nio.file.Files.readAllBytes(destination.toPath());
+        Allure.addAttachment(testName + " [" + status + "]", new ByteArrayInputStream(content));
+
+        System.out.println("Screenshot saved & added to Allure: " + destination.getAbsolutePath());
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
 }
