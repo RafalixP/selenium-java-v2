@@ -8,6 +8,8 @@ import com.rafal.selenium.pages.LoginPage;
 import com.rafal.selenium.pages.HomePage;
 import io.qameta.allure.Step;
 
+import io.qameta.allure.Allure;
+
 import org.openqa.selenium.By;
 //import java.time.Duration;
 
@@ -30,10 +32,11 @@ public class LoginTest extends BaseTest {
     }
 
     //case 1 - scenariusz pozytywny
-    @Step("Login as valid user")
-    @Test(enabled = true)
+    //@Step("Login as valid user")
+    @Test(enabled = true, description = "Login as valid user")
     public void testLogin() {
         
+        Allure.parameter("username", username); // info do raportu
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         loginPage.enterUsername(username);
         loginPage.enterPassword(password);
@@ -44,8 +47,11 @@ public class LoginTest extends BaseTest {
     }
 
     //case 2 - scenariusz negatywny, nieprawidłowe hasło
-    @Test(enabled = true)
+    //@Step("Login as invalid user")
+    @Test(enabled = true, description = "Login as invalid user")
     public void testLoginInvalidPassword() {
+
+        Allure.parameter("username", username);
         //znajdujemy interesujące nas pola i wpisujemy login oraz hasło
         loginPage.enterUsername(username);
         loginPage.enterPassword(invalidPassword);

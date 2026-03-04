@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import io.qameta.allure.Step;
+
 public class LoginPage extends BasePage {
 	//lokatory
 	private By usernameField = By.id("username");
@@ -31,15 +33,17 @@ public class LoginPage extends BasePage {
         return driver.getCurrentUrl().contains("secure");
     }
     
-    
+    @Step("Enter username: {username}")
     public void enterUsername(String username) {
         driver.findElement(usernameField).sendKeys(username);
     }
 
+    @Step("Enter password")
     public void enterPassword(String password) {
         driver.findElement(passwordField).sendKeys(password);
     }
 
+    @Step("Click the login button")
     public void clickLogin() {
         driver.findElement(loginButton).click();
     }
