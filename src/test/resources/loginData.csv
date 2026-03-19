@@ -1,0 +1,4 @@
+valid login,tomsmith,SuperSecretPassword!,true
+invalid username,invalidUser,SuperSecretPassword!,false
+invalid password,tomsmith,wrongPassword,false
+empty fields,,,false
